@@ -1,8 +1,11 @@
 def calculate_grade(scores):
-    total = 0
-    for score in scores:
-        total = total + score
+    # แก้ไข: ตรวจสอบก่อนว่าลิสต์ว่างหรือไม่
+    if len(scores) == 0:
+        return "N/A", 0  # ถ้าไม่มีคะแนน ให้คืนค่าเป็น N/A และเฉลี่ย 0
+
+    total = sum(scores) # ใช้ sum() เพื่อความกระชับ
     average = total / len(scores)
+    
     if average >= 80:
         grade = "A"
     elif average >= 70:
@@ -15,6 +18,6 @@ def calculate_grade(scores):
         grade = "F"
     return grade, average
 
-scores = [85, 92, 78, 88, 95]
-print(calculate_grade(scores))
-('A', 87.6) ผลที่ได้
+# ทดสอบรัน
+print(calculate_grade([85, 92, 78, 88, 95])) # ทำงานปกติ
+print(calculate_grade([]))                   # จะไม่ Error แล้ว แต่จะได้ ('N/A', 0) แทน
